@@ -15,10 +15,10 @@ router.post("/notes", (req, res) => {
     .catch((err) => res.status(500).json(err));
 });
 
-router.delete("/notes", (req, res) => {
+router.delete("/notes/:id", (req, res) => {
   store
-    .deleteNotes()
-    .then((deleteNotes) => res.json(deleteNotes))
+    .deleteNote(req.params.id)
+    .then(() => res.json({"ok": `Deleted note ${req.params.id}`}))
     .catch((err) => res.status(500).json(err));
 })
 
